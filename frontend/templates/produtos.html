@@ -1,0 +1,15 @@
+{% extends 'index.html' %}
+{% block title %}
+Produtos
+{% endblock %}
+{% block body %}
+<form action = "/adicionar_produtos">
+    <label>Nome do Produto: </label><input type='text' name="nome" /> </br>
+    <label>Descrição: </label><input type='text' name="descricao" /> </br>
+    <label>Preço: </label><input type='text' name="preco" /> </br>
+
+
+    <input type='submit' value='Cadastrar' />
+</form> </br>
+<a href="/">Voltar para a tela inicial</a>
+{% endblock %}

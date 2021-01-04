@@ -1,0 +1,14 @@
+{% extends 'index.html' %}
+{% block title %}
+Marketplace
+{% endblock %}
+{% block body %}
+
+<form action = "/adicionar_marketplaces">
+<label>Nome do Marketplace: </label><input type='text' name="nome" /> </br>
+<label>Descrição do Marketplace: </label><input type='text' name="descricao" /> </br>
+
+<input type='submit' value='Cadastrar' />
+</form> </br>
+<a href="/">Voltar para a tela inicial</a>
+{% endblock %}
