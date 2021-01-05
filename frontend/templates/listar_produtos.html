@@ -1,0 +1,23 @@
+{% extends 'index.html' %}
+
+{% block title %}
+Lista de Produtos
+{% endblock %}
+
+{% block body %}
+<table>
+    <tr>
+        <th>Nome</th>
+        <th>Descrição</th>
+        <th>Preço</th>
+    </tr>
+    {%for value in produtos%}
+    <tr>
+        <th>{{value['nome']}}</th>
+        <th>{{value['descricao']}}</th>
+        <th>{{value['preco']}}</th>
+    </tr>
+    {%endfor%}
+</table>
+<a href="/">Voltar para a tela inicial</a>
+{% endblock %}
