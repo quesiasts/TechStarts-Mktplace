@@ -1,23 +1,86 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">
     <link rel="stylesheet" href="{{url_for('static', filename='css/bulma.min.css')}}">
-    
     <title>Olist</title>
 </head>
-<body>
-    <h1>{% block title %} {% endblock %}</h1>
-    {% block body %}
-    <ol>
-        <li><a href="/marketplaces"> Marketplaces</a></li>
-        <li><a href="/produtos"> Produtos</a></li>
-        <li><a href="/listagem_marketplaces"> Listagem de Marketplaces</a></li>
-    </ol>
-    
 
+<body>
+    <nav class="navbar is-light" role="navigation" aria-label="main navigation">
+        <div class="navbar-brand">
+            <a class="navbar-item" href="/">
+                <img src="/static/img/logo.png" width="28" height="28">
+            </a>
+            <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false"
+                data-target="navbarBasicExample">
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+            </a>
+        </div>
+
+        <div id="navbarBasicExample" class="navbar-menu">
+            <div class="navbar-start">
+                <a href="/" class="navbar-item">
+                    Início
+                </a>
+                <a href="https://olist.com/" class="navbar-item">
+                    Site oficial
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <h1>{% block title %}{% endblock %}</h1>
+    {% block body %}
+    <div class="container is-widescreen">
+        <section class="hero">
+            <div class="hero-body">
+                <div class="container">
+                    <h1 class="title">
+                        Bem vindo ao Marketplace <b>olist</b>
+                    </h1>
+                    <h2 class="subtitle">
+                        o que deseja fazer?
+                    </h2>
+                </div>
+            </div>
+        </section>
+        <div class="container">
+            <div class="buttons">
+                <a class="button is-info is-medium is-fullwidth" href="/marketplaces"> Cadastrar um novo marketplace</a>
+                <a class="button is-info is-medium is-fullwidth" href="/produtos"> Cadastrar um novo produto</a>
+                <a class="button is-info is-medium is-fullwidth" href="/listagem_marketplaces"> Listar todos os marketplaces</a>                
+                <a class="button is-info is-medium is-fullwidth" href="/listarprodutos"> Listar todos os produtos</a>
+            </div>
+        </div>
+    </div>
+    <section class="section">
+        <div class="container">
+            <h1 class="title">Colaboradores deste projeto</h1>
+            <div class="content">
+                <ol class="is-upper-roman">
+                    <strong>v1</strong>
+                    <li>Quésia Santos</li>
+                    <li>Lucas João</li>
+                    <strong>v2</strong>
+                    <li>João Canutto</li>
+                    <li>Lucas Dario</li>
+                </ol>
+            </div>
+        </div>
+    </section>
     {% endblock %}
 </body>
+<footer class="footer">
+    <div class="content has-text-centered">
+        <p>
+            <strong>OTS - Marketplace</strong>.
+        </p>
+    </div>
+</footer>
+
 </html>

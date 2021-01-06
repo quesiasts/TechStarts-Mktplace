@@ -1,0 +1,52 @@
+{% extends 'index.html' %}
+{% block title %}
+<section class="hero">
+    <div class="hero-body">
+        <div class="container">
+            <h1 class="title">
+                Lista
+            </h1>
+            <h2 class="subtitle">
+                de produtos
+            </h2>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block body %}
+<div class="container is-widescreen">
+    <div class="columns">
+        <div class="column">
+        </div>
+        <div class="column">
+            <table class="table center">
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Descrição</th>
+                        <th>Preço</th>
+                    </tr>
+                </thead>
+                {%for value in produtos%}
+                <tbody>
+                    <tr>
+                        <td>{{value['nome']}}</td>
+                        <td>{{value['descricao']}}</td>
+                        <td><b>{{value['preco']}}</b></td>
+                    </tr>
+                    {%endfor%}
+                </tbody>
+            </table>
+        </div>
+        <div class="column">
+        </div>
+    </div>
+    <hr>
+</div>
+<div class="container is-widescreen">
+    <div class="buttons">
+        <a class="button is-link" href="/">Voltar ao início</a>
+    </div>
+</div>
+{% endblock %}

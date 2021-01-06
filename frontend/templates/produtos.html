@@ -1,15 +1,42 @@
 {% extends 'index.html' %}
 {% block title %}
-Produtos
+<section class="hero">
+    <div class="hero-body">
+        <div class="container">
+            <h1 class="title">
+                Cadastrar
+            </h1>
+            <h2 class="subtitle">
+                um novo produto
+            </h2>
+        </div>
+    </div>
+</section>
 {% endblock %}
+
 {% block body %}
-<form action = "/adicionar_produtos">
-    <label>Nome do Produto: </label><input type='text' name="nome" /> </br>
-    <label>Descrição: </label><input type='text' name="descricao" /> </br>
-    <label>Preço: </label><input type='text' name="preco" /> </br>
-
-
-    <input type='submit' value='Cadastrar' />
-</form> </br>
-<a href="/">Voltar para a tela inicial</a>
+<div class="container is-widescreen">
+    <form action="/adicionar_produtos">
+        <div class="field">
+            <label class="label">Nome do produto</label>
+            <div class="control">
+                <input class="input" name="nome" type="text" name="nome" style="width: 30%;" />
+            </div>
+        </div>
+        <div class="field">
+            <label class="label">Descrição do produto</label>
+            <div class="control">
+                <input class="input" name="descricao" type="text" name="nome" style="width: 30%;" />
+            </div>
+        </div>
+        <div class="field">
+            <label class="label">Preço do produto</label>
+            <div class="control">
+                <input class="input" name="preco" type="number" step="00.01" name="nome" style="width: 30%;" />
+            </div>
+        </div>
+        <input class="class= button is-link" type='submit' value='Cadastrar' />
+        <a class="button is-link is-light" href="/">Cancelar</a>
+    </form>
+</div>
 {% endblock %}
