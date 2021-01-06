@@ -22,10 +22,12 @@
         </div>
         <div class="column">
             <table class="table center">
-                <tr>
-                    <th>Nome</th>
-                    <th>Descrição</th>
-                </tr>
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Descrição</th>
+                    </tr>
+                </thead>
                 {% for i in lista_marketplaces %}
                 <tr>
                     <td>{{i['nome']}}</td>
