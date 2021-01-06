@@ -28,12 +28,14 @@
                         <th>Descrição</th>
                     </tr>
                 </thead>
+                <tbody>
                 {% for i in lista_marketplaces %}
                 <tr>
                     <td>{{i['nome']}}</td>
                     <td>{{i['descricao']}}</td>
                 </tr>
                 {% endfor %}
+                </tbody>
             </table>
         </div>
         <div class="column">
