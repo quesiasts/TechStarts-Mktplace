@@ -26,5 +26,9 @@ def add_produtos():
 def add_marketplaces():
     return render_template('adicionar_marketplaces.html', mensagem = set_marketplaces(request.args.get('nome'), request.args.get('descricao')))
 
+@app.route('/listagem_marketplaces')
+def list_marketplaces():
+    return render_template('listagem_marketplaces.html', lista_marketplaces = get_marketplaces()) 
+
 
 app.run(debug=True)
