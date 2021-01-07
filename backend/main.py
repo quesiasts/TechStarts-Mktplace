@@ -3,6 +3,7 @@ from datetime import datetime
 
 path_marketplaces = 'dados/marketplaces.txt'
 path_produtos = 'dados/produtos.txt'
+path_categorias = 'dados/categorias.txt'
 path_log = 'dados/log.txt'
 
 
@@ -78,6 +79,40 @@ def set_produtos(nome, descricao, preco):
     produtos_file.close()
     set_log('set_produtos - adicionar produtos')
     return 'Produto cadastrado com sucesso!!!'
+
+def set_categorias(nome, descricao):
+    if nome == '':
+        return 'Nome não pode ser vazio'
+    for categoria in get_categorias():
+        if categoria['nome'] == nome:
+            return 'Nome da categoria já existe!'
+    file = Path(path_categorias)
+    if file.is_file():
+        categorias_file = open(path_categorias, 'a')
+    else:
+        categorias_file = open(path_categorias, 'x')
+    categorias_file.write(f'{nome};{descricao}\n')
+    categorias_file.close()
+    set_log('set_categorias - adicionar categorias')
+    return 'Categoria cadastrado com sucesso!!!'
+
+def get_categorias():
+    categorias = []
+    file = Path(path_categorias)
+    if file.is_file():
+        categorias_file = open(path_categorias, 'r')
+    else:
+        categorias_file = open(path_categorias, 'x')
+    for i in categorias_file:
+        i = i.strip()
+        j = i.split(';')
+        i = {'nome': j[0],
+             'descricao': j[1]
+             }
+        categorias.append(i)
+    categorias_file.close()
+    set_log('get_categorias - buscar categorias')
+    return categorias
 
 
 def set_log(log):
