@@ -103,6 +103,12 @@ def get_seller():
 
 
 def set_seller(primeiro_nome, segundo_nome, email, telefone):
+    if primeiro_nome == '' or segundo_nome == '' or email == '' or telefone == '':
+        return 'Nenhum campo pode estar vazio!'
+    for seller in get_seller():
+        if seller['email'] == email:
+            print(seller['email'])
+            return 'O e-mail informado já está em uso!'
     file = Path(path_sellers)
     if file.is_file():
         seller_file = open(path_sellers, 'a')

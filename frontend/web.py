@@ -37,10 +37,15 @@ def add_marketplaces():
     return render_template('adicionar_marketplaces.html', mensagem=set_marketplaces(request.args.get('nome'), request.args.get('descricao')))
 
 
-@app.route('/adicionar_seller')
+@app.route('/adicionar_sellers')
 def add_seller():
     return render_template('adicionar_sellers.html', mensagem=set_seller(request.args.get('nome'),
                                                                          request.args.get('sobrenome'), request.args.get('telefone'), request.args.get('email')))
+
+
+@app.route('/listarsellers')
+def listar_sellers():
+    return render_template('listagem_sellers.html', sellers=get_seller())
 
 
 @app.route('/listarprodutos')

@@ -7,7 +7,7 @@
                 Lista
             </h1>
             <h2 class="subtitle">
-                de marketplaces
+                de sellers
             </h2>
         </div>
     </div>
@@ -24,16 +24,20 @@
                 <thead>
                     <tr>
                         <th>Nome</th>
-                        <th>Descrição</th>
+                        <th>Sobrenome</th>
+                        <th>Telefone</th>
+                        <th>E-mail</th>
                     </tr>
                 </thead>
+                {%for value in sellers%}
                 <tbody>
-                    {% for i in lista_marketplaces %}
                     <tr>
-                        <td>{{i['nome']}}</td>
-                        <td>{{i['descricao']}}</td>
+                        <td>{{value['primeiro_nome']}}</td>
+                        <td>{{value['segundo_nome']}}</td>
+                        <td>{{value['telefone']}}</td>
+                        <td>{{value['email']}}</td>
                     </tr>
-                    {% endfor %}
+                    {%endfor%}
                 </tbody>
             </table>
         </div>
