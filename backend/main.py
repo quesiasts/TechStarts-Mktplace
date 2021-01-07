@@ -3,6 +3,7 @@ from datetime import datetime
 
 path_marketplaces = 'dados/marketplaces.txt'
 path_produtos = 'dados/produtos.txt'
+path_sellers = 'dados/sellers.txt'
 path_categorias = 'dados/categorias.txt'
 path_log = 'dados/log.txt'
 
@@ -113,6 +114,45 @@ def get_categorias():
     categorias_file.close()
     set_log('get_categorias - buscar categorias')
     return categorias
+
+
+def get_seller():
+    sellers = []
+    file = Path(path_sellers)
+    if file.is_file:
+        sellers_file = open(path_sellers, 'r')
+    else:
+        sellers_file = open(path_sellers, 'x')
+    for seller in sellers_file:
+        aux = seller.strip()
+        aux = aux.split(';')
+        p = {'primeiro_nome': aux[0],
+             'segundo_nome': aux[1],
+             'email': aux[2],
+             'telefone': aux[3]
+             }
+        sellers.append(p)
+    sellers_file.close()
+    set_log('get_sellers - buscar sellers')
+    return sellers
+
+
+def set_seller(primeiro_nome, segundo_nome, email, telefone):
+    if primeiro_nome == '' or segundo_nome == '' or email == '' or telefone == '':
+        return 'Nenhum campo pode estar vazio!'
+    for seller in get_seller():
+        if seller['email'] == email:
+            print(seller['email'])
+            return 'O e-mail informado já está em uso!'
+    file = Path(path_sellers)
+    if file.is_file():
+        seller_file = open(path_sellers, 'a')
+    else:
+        seller_file = open(path_sellers, 'x')
+    seller_file.write(f'{primeiro_nome};{segundo_nome};{email};{telefone}\n')
+    seller_file.close()
+    set_log('set_seller - adicionar novo seller')
+    return 'Seller cadastrado com sucesso!!!'
 
 
 def set_log(log):
