@@ -1,0 +1,53 @@
+{% extends 'index.html' %}
+
+{% block title %}
+<section class="hero">
+    <div class="hero-body">
+        <div class="container">
+            <h1 class="title">
+                Lista
+            </h1>
+            <h2 class="subtitle">
+                de logs
+            </h2>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block body %}
+<div class="container is-widescreen">
+    <div class="columns">
+        <div class="column is-one-fifth" >
+        </div>
+        <div class="column">
+            <table class="table center">
+                <thead>
+                    <tr>
+                        <th>Descrição</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for i in lista_logs %}
+                    {% if i['operation'] == 'set' %}
+                        <tr bgcolor="9AF5D3">
+                            <td>{{i['description']}}</td>
+                        </tr>
+                    {% else  %}
+                        <tr bgcolor = "F5EF9A">
+                            <td>{{i['description']}}</td>
+                        </tr>
+                    {% endif %}
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <hr>
+</div>
+<div class="container is-widescreen">
+    <div class="buttons">
+        <a class="button is-link" href="/">Voltar ao início</a>
+    </div>
+</div>
+{% endblock %}

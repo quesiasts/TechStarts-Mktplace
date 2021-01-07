@@ -69,5 +69,9 @@ def list_marketplaces():
 def list_categorias():
     return render_template('listagem_categorias.html', lista_categorias = get_categorias())
 
+@app.route('/listagem_logs')
+def list_logs():
+    return render_template('listagem_logs.html', lista_logs = get_logs())
+
 
 app.run(debug=True)
