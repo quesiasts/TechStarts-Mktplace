@@ -142,9 +142,9 @@ dmypy.json
 *.pyc
 backend/__pycache__/main.cpython-39.pyc
 
-#Txt files
-*.txt
 .DS_Store
 dados/log.txt
 dados/marketplaces.txt
+dados/produtos.txt
+dados/sellers.txt
 *.txt
