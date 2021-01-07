@@ -23,7 +23,7 @@ def get_marketplaces():
              }
         marketplaces.append(i)
     marketplaces_file.close()
-    set_log('get_marketplaces - buscar marketplaces')
+    set_log('get', 'get_marketplaces - buscar marketplaces')
     return marketplaces
 
 
@@ -40,7 +40,7 @@ def set_marketplaces(nome, descricao):
         marketplaces_file = open(path_marketplaces, 'x')
     marketplaces_file.write(f'{nome};{descricao}\n')
     marketplaces_file.close()
-    set_log('set_marketplaces - adicionar marketplaces')
+    set_log('set', 'set_marketplaces - adicionar marketplaces')
     return 'Marketplace cadastrado com sucesso!!!'
 
 
@@ -61,7 +61,7 @@ def get_produtos():
              }
         produtos.append(p)
     produtos_file.close()
-    set_log('get_produtos - buscar produtos')
+    set_log('get', 'get_produtos - buscar produtos')
     return produtos
 
 
@@ -78,7 +78,7 @@ def set_produtos(nome, descricao, preco):
         produtos_file = open(path_produtos, 'x')
     produtos_file.write(f'{nome};{descricao};{preco}\n')
     produtos_file.close()
-    set_log('set_produtos - adicionar produtos')
+    set_log('set', 'set_produtos - adicionar produtos')
     return 'Produto cadastrado com sucesso!!!'
 
 def set_categorias(nome, descricao):
@@ -94,7 +94,7 @@ def set_categorias(nome, descricao):
         categorias_file = open(path_categorias, 'x')
     categorias_file.write(f'{nome};{descricao}\n')
     categorias_file.close()
-    set_log('set_categorias - adicionar categorias')
+    set_log('set', 'set_categorias - adicionar categorias')
     return 'Categoria cadastrado com sucesso!!!'
 
 def get_categorias():
@@ -112,7 +112,7 @@ def get_categorias():
              }
         categorias.append(i)
     categorias_file.close()
-    set_log('get_categorias - buscar categorias')
+    set_log('get', 'get_categorias - buscar categorias')
     return categorias
 
 
@@ -133,7 +133,7 @@ def get_seller():
              }
         sellers.append(p)
     sellers_file.close()
-    set_log('get_sellers - buscar sellers')
+    set_log('get', 'get_sellers - buscar sellers')
     return sellers
 
 
@@ -151,17 +151,29 @@ def set_seller(primeiro_nome, segundo_nome, email, telefone):
         seller_file = open(path_sellers, 'x')
     seller_file.write(f'{primeiro_nome};{segundo_nome};{email};{telefone}\n')
     seller_file.close()
-    set_log('set_seller - adicionar novo seller')
+    set_log('set', 'set_seller - adicionar novo seller')
     return 'Seller cadastrado com sucesso!!!'
 
 
-def set_log(log):
+def set_log(operation: str, log: str):
     file = Path(path_log)
     if file.is_file():
         log_file = open(path_log, 'a')
     else:
         log_file = open(path_log, 'x')
     dataHora = datetime.now()
-    dataHora = dataHora.strftime("%d /%m /%y access the %H:%M h/m.")
-    log_file.write(f'{dataHora} - {log}\n')
+    dataHora = dataHora.strftime("%d /%m /%y accessed at %H:%Mh.")
+    log_file.write(f'{operation}; {dataHora} - {log}\n')
     log_file.close()
+
+def get_logs():
+    lst_log = []
+    file = Path(path_log)
+    log_file = open(path_log, 'r')
+    for log in log_file:
+        aux = log.split(';')
+        log = {'operation': aux[0], 'description': aux[1]}
+        lst_log.append(log)
+    log_file.close()
+    set_log('get', 'get_log- buscar logs')
+    return lst_log
