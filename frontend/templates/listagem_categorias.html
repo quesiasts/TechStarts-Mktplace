@@ -1,0 +1,51 @@
+{% extends 'index.html' %}
+
+{% block title %}
+<section class="hero">
+    <div class="hero-body">
+        <div class="container">
+            <h1 class="title">
+                Lista
+            </h1>
+            <h2 class="subtitle">
+                de categorias
+            </h2>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block body %}
+<div class="container is-widescreen">
+    <div class="columns">
+        <div class="column">
+        </div>
+        <div class="column">
+            <table class="table center">
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Descrição</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for i in lista_categorias %}
+                <tr>
+                    <td>{{i['nome']}}</td>
+                    <td>{{i['descricao']}}</td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div class="column">
+        </div>
+    </div>
+    <hr>
+</div>
+<div class="container is-widescreen">
+    <div class="buttons">
+        <a class="button is-primary" href="/">Voltar ao início</a>
+    </div>
+</div>
+{% endblock %}

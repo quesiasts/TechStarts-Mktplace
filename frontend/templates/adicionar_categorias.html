@@ -1,0 +1,25 @@
+{% extends 'index.html' %}
+{% block title %}
+<section class="hero">
+    <div class="hero-body">
+        <div class="container">
+            <h1 class="title">
+                Status
+            </h1>
+            <h2 class="subtitle">
+                do seu cadastro
+            </h2>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block body %}
+<div class="container is-widescreen">
+    <div class="notification is-info is-light" style="width: 40%;">
+        <strong>{{mensagem}}</strong>
+    </div>
+    <a class="button is-link" href="/categorias">Cadastrar novamente</a>
+    <a class="button is-link is-light" href="/">Voltar ao início</a>
+</div>
+{% endblock %}
