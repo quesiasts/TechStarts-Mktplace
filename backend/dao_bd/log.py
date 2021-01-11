@@ -1,14 +1,10 @@
-import psycopg2
+import sys
+sys.path.append('.')
 
-_host = 'pgsql08-farm15.uni5.net'
-_user = 'topskills6'
-_password = 'olist123'
-_database = 'topskills6'
-
-connection = f'host={_host} user={_user} dbname={_database} password={_password}'
+from backend.conexao_bd.conexao import *
 
 def criar_log_bd(operacao: str) -> None:
-    conn = psycopg2.connect(connection)
+    conn = psycopg2.connect(dados_conexao())
     cursor = conn.cursor()
     cursor.execute(f"INSERT INTO log (description) VALUES ('{operacao}');")
     conn.commit()
@@ -17,7 +13,7 @@ def criar_log_bd(operacao: str) -> None:
     
 def listar_log_bd() -> list:
     logs = []
-    conn = psycopg2.connect(connection)
+    conn = psycopg2.connect(dados_conexao())
     cursor = conn.cursor()
     cursor.execute("SELECT * FROM log")
     log = cursor.fetchall()
