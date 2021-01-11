@@ -1,7 +1,12 @@
 from flask import Flask, render_template, request
 import sys
 sys.path.append('.')
-from backend.main import *
+from backend.controller.produto import *
+from backend.controller.categoria import *
+from backend.controller.marketplace import *
+from backend.controller.seller import *
+from backend.controller.log import *
+
 
 app = Flask(__name__)
 app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
@@ -11,67 +16,84 @@ app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
 def index():
     return render_template('index.html')
 
+
 @app.route('/marketplaces')
 def marketplaces():
-    return render_template('marketplace.html', marketplaces=get_marketplaces())
+    return render_template('marketplace.html', marketplaces=listar_marketplaces())
+
 
 @app.route('/categorias')
 def categorias():
-    return render_template('categorias.html', categorias=get_categorias())
+    return render_template('categorias.html', categorias=listar_categorias())
+
 
 @app.route('/produtos')
 def produtos():
-    return render_template('produtos.html', produtos=get_produtos())
+    return render_template('produtos.html', produtos=listar_produtos())
 
 
 @app.route('/sellers')
 def sellers():
-    return render_template('sellers.html', sellers=get_seller())
+    return render_template('sellers.html', sellers=listar_sellers())
 
 
 @app.route('/adicionar_produtos')
 def add_produtos():
-    return render_template('adicionar_produtos.html', mensagem=set_produtos(request.args.get('nome'), request.args.get('descricao'), request.args.get('preco')))
+    nome = request.args.get('nome')
+    descricao = request.args.get('descricao')
+    preco = request.args.get('preco')
+    criar_produtos(nome, descricao, preco)
+    return render_template('retorno_produtos.html', mensagem=f'Produto {nome} cadastrado com sucesso!')
 
-  
+
 @app.route('/adicionar_marketplaces')
 def add_marketplaces():
-    return render_template('adicionar_marketplaces.html', mensagem=set_marketplaces(request.args.get('nome'), request.args.get('descricao')))
+    nome = request.args.get('nome')
+    descricao = request.args.get('descricao')
+    criar_marketplaces(nome, descricao)
+    return render_template('retorno_marketplaces.html', mensagem=f'Marketplace {nome} cadastrado com sucesso!')
 
-  
+
 @app.route('/adicionar_categorias')
 def add_categorias():
-    return render_template('adicionar_categorias.html', mensagem=set_categorias(request.args.get('nome'), request.args.get('descricao')))
+    nome = request.args.get('nome')
+    descricao = request.args.get('descricao')
+    criar_categorias(nome, descricao)
+    return render_template('retorno_categorias.html', mensagem=f'Categoria {nome} cadastrado com sucesso!')
 
   
 @app.route('/adicionar_sellers')
 def add_seller():
-    return render_template('adicionar_sellers.html', mensagem=set_seller(request.args.get('nome'),
-                                                                         request.args.get('sobrenome'), request.args.get('telefone'), request.args.get('email')))
+    nome = request.args.get('nome')
+    telefone = request.args.get('telefone')
+    email = request.args.get('email')
+    criar_sellers(nome, email, telefone)
+    return render_template('retorno_sellers.html', mensagem=f'Seller {nome} cadastrado com sucesso!')
 
 
 @app.route('/listarsellers')
-def listar_sellers():
-    return render_template('listagem_sellers.html', sellers=get_seller())
+def listar_seller():
+    return render_template('listagem_sellers.html', sellers=listar_sellers())
 
 
 @app.route('/listarprodutos')
-def listar_produtos():
-    return render_template('listar_produtos.html', produtos=get_produtos())
+def listar_produto():
+    return render_template('listar_produtos.html', produtos=listar_produtos())
 
 
 @app.route('/listagem_marketplaces')
-def list_marketplaces():
-    return render_template('listagem_marketplaces.html', lista_marketplaces = get_marketplaces())
+def list_marketplace():
+    return render_template('listagem_marketplaces.html', lista_marketplaces = listar_marketplaces())
 
 
 @app.route('/listagem_categorias')
-def list_categorias():
-    return render_template('listagem_categorias.html', lista_categorias = get_categorias())
+def list_categoria():
+    return render_template('listagem_categorias.html', lista_categorias = listar_categorias())
+
 
 @app.route('/listagem_logs')
-def list_logs():
-    return render_template('listagem_logs.html', lista_logs = get_logs())
+def list_log():
+    return render_template('listagem_logs.html', lista_logs = listar_logs())
 
 
 app.run(debug=True)

@@ -24,7 +24,6 @@
                 <thead>
                     <tr>
                         <th>Nome</th>
-                        <th>Sobrenome</th>
                         <th>Telefone</th>
                         <th>E-mail</th>
                     </tr>
@@ -32,12 +31,11 @@
                 {%for value in sellers%}
                 <tbody>
                     <tr>
-                        <td>{{value['primeiro_nome']}}</td>
-                        <td>{{value['segundo_nome']}}</td>
+                        <td>{{value['nome']}}</td>
                         <td>{{value['telefone']}}</td>
                         <td>{{value['email']}}</td>
                     </tr>
-                    {%endfor%}
+                {%endfor%}
                 </tbody>
             </table>
         </div>

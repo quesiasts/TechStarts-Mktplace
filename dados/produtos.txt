@@ -1,0 +1,3 @@
+Cerveja;bebida;5.99
+Vinho;Bebida;89.90
+Coca cola;Bebida;5.99
