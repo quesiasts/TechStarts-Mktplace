@@ -1,14 +1,10 @@
-import psycopg2
+import sys
+sys.path.append('.')
 
-_host = 'pgsql08-farm15.uni5.net'
-_user = 'topskills6'
-_password = 'olist123'
-_database = 'topskills6'
-
-connection = f'host={_host} user={_user} dbname={_database} password={_password}'
+from backend.conexao_bd.conexao import *
 
 def criar_seller_bd(nome:str, email:str, telefone:str) -> None:
-    conn = psycopg2.connect(connection)
+    conn = psycopg2.connect(dados_conexao())
     cursor = conn.cursor()
     cursor.execute(f"INSERT INTO sellers (name, email, phone) VALUES ('{nome}', '{email}', '{telefone}');")
     conn.commit()
@@ -17,7 +13,7 @@ def criar_seller_bd(nome:str, email:str, telefone:str) -> None:
     
 def listar_seller_bd() -> list:
     sellers = []
-    conn = psycopg2.connect(connection)
+    conn = psycopg2.connect(dados_conexao())
     cursor = conn.cursor()
     cursor.execute("SELECT * FROM sellers")
     seller = cursor.fetchall()
