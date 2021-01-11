@@ -24,18 +24,21 @@
             <table class="table center">
                 <thead>
                     <tr>
-                        <th>Descrição</th>
+                        <th>Data/Hora</th>
+                        <th>Ação</th>
                     </tr>
                 </thead>
                 <tbody>
                 {% for i in lista_logs %}
-                    {% if i['operation'] == 'set' %}
-                        <tr bgcolor="9AF5D3">
-                            <td>{{i['description']}}</td>
+                    {% if 'listado' in i['operacao'] or 'listada' in i['operacao'] %}
+                        <tr bgcolor="#708090">
+                            <td>{{i['datahora']}}</td>
+                            <td>{{i['operacao']}}</td>
                         </tr>
                     {% else  %}
-                        <tr bgcolor = "F5EF9A">
-                            <td>{{i['description']}}</td>
+                        <tr bgcolor = "#B0C4DE">
+                            <td>{{i['datahora']}}</td>
+                            <td>{{i['operacao']}}</td>
                         </tr>
                     {% endif %}
                 {% endfor %}

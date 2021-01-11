@@ -1,1 +1,4 @@
-O Boticário;Loja de beleza
+Magalu;Teste
+Casas Bahia;Teste2
+Ponto frio;Teste
+Americanas;Teste
