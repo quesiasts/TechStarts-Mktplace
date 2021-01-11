@@ -1,7 +1,7 @@
 import sys
 sys.path.append('.')
 from backend.dao_txt.marketplace import criar_marketplace, listar_marketplace
-from backend.dao_txt.log import criar_log
+from backend.dao_bd.log import criar_log
 from backend.dao_bd.marketplace import *
 
 
