@@ -6,6 +6,9 @@ from backend.controller.categoria import *
 from backend.controller.marketplace import *
 from backend.controller.seller import *
 from backend.controller.log import *
+from backend.models.categoria import *
+from backend.models.marketplace import *
+from backend.models.produto import *
 
 
 app = Flask(__name__)
@@ -39,27 +42,30 @@ def sellers():
 
 @app.route('/adicionar_produtos')
 def add_produtos():
-    nome = request.args.get('nome')
-    descricao = request.args.get('descricao')
-    preco = request.args.get('preco')
-    criar_produtos(nome, descricao, preco)
-    return render_template('retorno_produtos.html', mensagem=f'Produto {nome} cadastrado com sucesso!')
+    name = request.args.get('nome')
+    description = request.args.get('descricao')
+    price = request.args.get('preco')
+    produto = Produto(None, name, description, price)
+    criar_produtos(produto)
+    return render_template('retorno_produtos.html', mensagem=f'Produto {produto.name} cadastrado com sucesso!')
 
 
 @app.route('/adicionar_marketplaces')
 def add_marketplaces():
-    nome = request.args.get('nome')
-    descricao = request.args.get('descricao')
-    criar_marketplaces(nome, descricao)
-    return render_template('retorno_marketplaces.html', mensagem=f'Marketplace {nome} cadastrado com sucesso!')
+    name = request.args.get('name')
+    description = request.args.get('description')
+    marketplace = Marketplace(None, name, description)
+    criar_marketplaces(marketplace)
+    return render_template('retorno_marketplaces.html', mensagem=f'Marketplace {marketplace.name} cadastrado com sucesso!')
 
 
 @app.route('/adicionar_categorias')
 def add_categorias():
     nome = request.args.get('nome')
     descricao = request.args.get('descricao')
-    criar_categorias(nome, descricao)
-    return render_template('retorno_categorias.html', mensagem=f'Categoria {nome} cadastrado com sucesso!')
+    categoria = Categoria(nome, descricao)
+    criar_categorias(categoria)
+    return render_template('retorno_categorias.html', mensagem=f'Categoria {categoria.name} cadastrado com sucesso!')
 
   
 @app.route('/adicionar_sellers')

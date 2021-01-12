@@ -2,30 +2,27 @@ import sys
 sys.path.append('.')
 
 from backend.conexao_bd.conexao import *
+from backend.models.produto import Produto
 
 
-def criar_produto_bd(nome:str, descricao:str, preco: float) -> None:
+def criar_produto_bd(produto: Produto) -> None:
     conn = psycopg2.connect(dados_conexao())
-    cursor = conn.cursor()
-    cursor.execute(f"""INSERT INTO product (name, description, price) 
-                   VALUES ('{nome}', '{descricao}', '{preco}');""")
+    cursor = conn.cursor()    
+    cursor.execute(f"INSERT INTO product (name, description, price) VALUES ('{produto.name}', '{produto.description}', {produto.price});")
     conn.commit()
     cursor.close()
     conn.close()
     
     
 def listar_produto_bd() -> list:
-    products = []
     conn = psycopg2.connect(dados_conexao())
     cursor = conn.cursor()
     cursor.execute("SELECT * FROM product")
-    prod = cursor.fetchall()
-    for i in prod:
-        i = {'nome': i[1],
-            'descricao': i[2],
-            'preco': i[3]
-            }
-        products.append(i)
+    linhas = cursor.fetchall()
+    products = []
+    for linha in linhas:
+        product = Produto(linha[0], linha[1], linha[2], linha[3])        
+        products.append(product)
     cursor.close()
     conn.close()
     return products
