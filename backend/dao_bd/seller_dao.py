@@ -1,9 +1,6 @@
-import sys
-sys.path.append('.')
-
-from backend.conexao_bd.conexao import *
-from backend.models.seller import Seller
 from .conexao import *
+from backend.models.seller import Seller
+
 
 
 def criar_seller_bd(seller: Seller) -> None:

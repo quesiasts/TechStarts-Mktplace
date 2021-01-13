@@ -1,5 +1,5 @@
 
-from backend.conexao_bd.conexao import *
+#from backend.conexao_bd.conexao import *
 from backend.models.log import Log
 from .conexao import *
 

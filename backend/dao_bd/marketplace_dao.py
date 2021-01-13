@@ -1,9 +1,6 @@
-import sys
-sys.path.append('.')
-
-from backend.conexao_bd.conexao import *
-from backend.models.marketplace import Marketplace
 from .conexao import *
+from backend.models.marketplace import Marketplace
+
 
 def criar_marketplace_bd(marketplace: Marketplace) -> None:
     conn = psycopg2.connect(dados_conexao())

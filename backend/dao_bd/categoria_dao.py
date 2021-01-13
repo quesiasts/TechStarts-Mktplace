@@ -1,7 +1,4 @@
-import sys
-sys.path.append('.')
-
-from backend.conexao_bd.conexao import *
+from .conexao import *
 from backend.models.categoria import Categoria
 
 
