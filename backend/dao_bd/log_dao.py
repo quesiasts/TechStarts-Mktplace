@@ -1,8 +1,8 @@
-import sys
-sys.path.append('.')
 
 from backend.conexao_bd.conexao import *
 from backend.models.log import Log
+from .conexao import *
+
 
 def criar_log_bd(log: Log) -> None:
     conn = psycopg2.connect(dados_conexao())

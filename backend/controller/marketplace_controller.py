@@ -1,9 +1,11 @@
 import sys
 sys.path.append('.')
-from backend.dao_txt.marketplace import criar_marketplace, listar_marketplace
-from backend.dao_bd.log import *
-from backend.dao_bd.marketplace import *
+
+from backend.dao_txt.marketplace_dao_txt import criar_marketplace, listar_marketplace
+from backend.dao_bd.log_dao import *
+from backend.dao_bd.marketplace_dao import *
 from backend.models.marketplace import Marketplace
+
 
 
 def criar_marketplaces(marketplace: Marketplace) -> None:

@@ -3,6 +3,8 @@ sys.path.append('.')
 
 from backend.conexao_bd.conexao import *
 from backend.models.seller import Seller
+from .conexao import *
+
 
 def criar_seller_bd(seller: Seller) -> None:
     conn = psycopg2.connect(dados_conexao())

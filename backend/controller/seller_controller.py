@@ -1,9 +1,8 @@
 import sys
 sys.path.append('.')
-#from backend.dao_txt.seller import criar_seller, listar_seller
-#from backend.dao_txt.log import criar_log
-from backend.dao_bd.seller import *
-from backend.dao_bd.log import *
+
+from backend.dao_bd.seller_dao import *
+from backend.dao_bd.log_dao import *
 from backend.models.seller import Seller
 
 

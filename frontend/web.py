@@ -1,15 +1,16 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect
 import sys
 sys.path.append('.')
-from backend.controller.produto import *
-from backend.controller.categoria import *
-from backend.controller.marketplace import *
-from backend.controller.seller import *
-from backend.controller.log import *
+
 from backend.models.categoria import *
 from backend.models.marketplace import *
 from backend.models.produto import *
 from backend.models.seller import *
+from backend.controller.produto_controller import *
+from backend.controller.categoria_controller import *
+from backend.controller.marketplace_controller import *
+from backend.controller.seller_controller import *
+from backend.controller.log_controller import *
 
 
 app = Flask(__name__)

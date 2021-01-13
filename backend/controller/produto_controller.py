@@ -1,8 +1,10 @@
 import sys
 sys.path.append('.')
-from backend.dao_bd.log import *
-from backend.dao_bd.produto import *
+
+from backend.dao_bd.log_dao import *
+from backend.dao_bd.produto_dao import *
 from backend.models.produto import Produto
+
 
 
 def criar_produtos(produto:Produto) -> None:
