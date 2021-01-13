@@ -21,11 +21,9 @@ def listar_categoria_bd() -> list:
     cursor.execute("SELECT name, description, id FROM category")
     linhas = cursor.fetchall()
     categorias = []
-
     for linha in linhas:
         categoria = Categoria(linha[0], linha[1], linha[2])        
         categorias.append(categoria)
-
     cursor.close()
     conn.close()
     return categorias

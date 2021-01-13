@@ -2,24 +2,26 @@ import sys
 sys.path.append('.')
 
 from backend.conexao_bd.conexao import *
+from backend.models.log import Log
 
-def criar_log_bd(operacao: str) -> None:
+def criar_log_bd(log: Log) -> None:
     conn = psycopg2.connect(dados_conexao())
     cursor = conn.cursor()
-    cursor.execute(f"INSERT INTO log (description) VALUES ('{operacao}');")
+    cursor.execute(f"INSERT INTO log (description) VALUES ('{log.description}');")
     conn.commit()
     cursor.close()
     conn.close()
     
-def listar_log_bd() -> list:
-    logs = []
+def listar_log_bd() -> list:    
     conn = psycopg2.connect(dados_conexao())
     cursor = conn.cursor()
     cursor.execute("SELECT * FROM log")
-    log = cursor.fetchall()
-    for l in log:
-        l = {'datahora': str(l[1].strftime("%d/%m/%Y")) + ' - ' + str(l[2]), 'operacao': l[3]}
-        logs.append(l)
+    linhas = cursor.fetchall()   
+    logs = []
+    for linha in linhas:
+        datetime = linha[1].strftime("%d/%m/%Y") + ' - ' + str(linha[2])
+        log = Log(linha[0], datetime, linha[3])         
+        logs.append(log)
     cursor.close()
     conn.close()
     return logs

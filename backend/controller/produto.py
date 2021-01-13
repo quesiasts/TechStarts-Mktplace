@@ -7,10 +7,12 @@ from backend.models.produto import Produto
 
 def criar_produtos(produto:Produto) -> None:
     criar_produto_bd(produto)
-    criar_log_bd(f'Produto {produto.name} criado!')
+    log = Log(None,None, f'Produto {produto.name} criado!' )
+    criar_log_bd(log)
 
 def listar_produtos() -> list:
     produtos = listar_produto_bd()
-    criar_log_bd(f'Produto listado!')
+    log = Log(None, None, f'Produto listado!' )
+    criar_log_bd(log)
     return produtos
 

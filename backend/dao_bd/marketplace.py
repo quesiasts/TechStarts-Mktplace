@@ -22,12 +22,9 @@ def listar_marketplace_bd() -> list:
     cursor.execute("SELECT id, marketplace_name, description FROM marketplaces")
     linhas = cursor.fetchall()
     marketplaces = []
-
     for linha in linhas:
         marketplace = Marketplace(linha[0], linha[1], linha[2])        
         marketplaces.append(marketplace)
-
-
     cursor.close()
     conn.close()
     return marketplaces

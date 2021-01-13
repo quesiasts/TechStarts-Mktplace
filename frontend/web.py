@@ -9,6 +9,7 @@ from backend.controller.log import *
 from backend.models.categoria import *
 from backend.models.marketplace import *
 from backend.models.produto import *
+from backend.models.seller import *
 
 
 app = Flask(__name__)
@@ -70,11 +71,12 @@ def add_categorias():
   
 @app.route('/adicionar_sellers')
 def add_seller():
-    nome = request.args.get('nome')
-    telefone = request.args.get('telefone')
+    name = request.args.get('nome')
+    phone = request.args.get('telefone')
     email = request.args.get('email')
-    criar_sellers(nome, email, telefone)
-    return render_template('retorno_sellers.html', mensagem=f'Seller {nome} cadastrado com sucesso!')
+    seller = Seller(None, name, phone, email)
+    criar_sellers(seller)
+    return render_template('retorno_sellers.html', mensagem=f'Seller {seller.name} cadastrado com sucesso!')
 
 
 @app.route('/listarsellers')

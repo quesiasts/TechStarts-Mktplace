@@ -1,8 +1,8 @@
-class Produto:
-  def __init__(self, id: int = None, nome: str, email: str, telefone: str ) -> None:
+class Seller:
+  def __init__(self, id: int, name: str, email: str, phone: str ) -> None:
     self.id = id
-    self.nome = nome
+    self.name = name
     self.email = email
-    self.telefone = telefone
+    self.phone = phone
     
     
