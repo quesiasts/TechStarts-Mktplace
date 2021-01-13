@@ -8,12 +8,12 @@ from backend.models.categoria import Categoria
 
 def criar_categorias(categoria: Categoria) -> None:
     criar_categoria_bd(categoria)
-    log = Log(None, None, f'Categoria {categoria.name} criada!' )
+    log = Log(f'Categoria {categoria.name} criada!' )
     criar_log_bd(log)
 
 def listar_categorias() -> list:
     categorias = listar_categoria_bd()
-    log = Log(None, None, f'Categoria listada!')
+    log = Log(f'Categoria listada!')
     criar_log_bd(log)
     return categorias
 

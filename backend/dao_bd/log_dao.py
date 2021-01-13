@@ -15,12 +15,12 @@ def criar_log_bd(log: Log) -> None:
 def listar_log_bd() -> list:    
     conn = psycopg2.connect(dados_conexao())
     cursor = conn.cursor()
-    cursor.execute("SELECT * FROM log")
+    cursor.execute("SELECT id, date, hour, description FROM log")
     linhas = cursor.fetchall()   
     logs = []
     for linha in linhas:
         datetime = linha[1].strftime("%d/%m/%Y") + ' - ' + str(linha[2])
-        log = Log(linha[0], datetime, linha[3])         
+        log = Log(linha[3], linha[0], datetime)
         logs.append(log)
     cursor.close()
     conn.close()
