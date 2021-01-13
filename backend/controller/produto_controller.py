@@ -1,7 +1,7 @@
 import sys
 sys.path.append('.')
-from backend.dao_bd.log import *
-from backend.dao_bd.produto import *
+from backend.dao_bd.log_dao import *
+from backend.dao_bd.produto_dao import *
 
 
 def criar_produtos(nome:str, descricao:str, preco:float) -> None:

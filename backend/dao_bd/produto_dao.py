@@ -1,7 +1,4 @@
-import sys
-sys.path.append('.')
-
-from backend.conexao_bd.conexao import *
+from .conexao import *
 
 
 def criar_produto_bd(nome:str, descricao:str, preco: float) -> None:

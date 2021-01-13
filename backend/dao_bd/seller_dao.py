@@ -1,7 +1,4 @@
-import sys
-sys.path.append('.')
-
-from backend.conexao_bd.conexao import *
+from .conexao import *
 
 def criar_seller_bd(nome:str, email:str, telefone:str) -> None:
     conn = psycopg2.connect(dados_conexao())

@@ -1,7 +1,4 @@
-import sys
-sys.path.append('.')
-
-from backend.conexao_bd.conexao import *
+from .conexao import *
 
 
 def criar_marketplace_bd(nome:str, descricao:str) -> None:
