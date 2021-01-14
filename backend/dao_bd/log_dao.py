@@ -20,7 +20,7 @@ def listar_log_bd() -> list:
     logs = []
     for linha in linhas:
         datetime = linha[1].strftime("%d/%m/%Y") + ' - ' + str(linha[2])
-        log = Log(linha[3], linha[0], datetime)
+        log = Log(linha[3], datetime, linha[0])
         logs.append(log)
     cursor.close()
     conn.close()
