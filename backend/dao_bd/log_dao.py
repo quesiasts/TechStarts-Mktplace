@@ -1,11 +1,10 @@
-
-#from backend.conexao_bd.conexao import *
+from .connection import Connection
 from backend.models.log import Log
-from .conexao import *
+
 
 
 def criar_log_bd(log: Log) -> None:
-    with psycopg2.connect(dados_conexao()) as connection:
+    with Connection() as connection:
         cursor = connection.cursor()
         cursor.execute(f"INSERT INTO log (description) VALUES ('{log.description}');")
         connection.commit()
@@ -13,7 +12,7 @@ def criar_log_bd(log: Log) -> None:
     
 def listar_log_bd() -> list:
     logs = []    
-    with psycopg2.connect(dados_conexao()) as connection:
+    with Connection() as connection:
         cursor = connection.cursor()
         cursor.execute("SELECT id, date, hour, description FROM log")
         linhas = cursor.fetchall()        
