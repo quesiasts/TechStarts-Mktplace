@@ -10,12 +10,12 @@ from backend.models.marketplace import Marketplace
 
 def criar_marketplaces(marketplace: Marketplace) -> None:
     criar_marketplace_bd(marketplace)
-    log = Log(None, None, f'Marketplace {marketplace.name} criado!' )
+    log = Log(f'Marketplace {marketplace.name} criado!' )
     criar_log_bd(log)
 
 def listar_marketplaces() -> list:
     marketplaces = listar_marketplace_bd()
-    log = Log(None, None, f'Marketplace listado!')
+    log = Log(f'Marketplace listado!')
     criar_log_bd(log)
     return marketplaces
 
