@@ -1,6 +1,6 @@
 class Marketplace:
 
-  def __init__(self, id: int = None, name: str = None, description: str = None) -> None:
+  def __init__(self, name: str, description: str, id: int = None) -> None:
     self.id = id
     self.name = name
     self.description = description
