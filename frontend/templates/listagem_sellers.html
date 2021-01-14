@@ -1,5 +1,4 @@
-{% extends 'index.html' %}
-{% block title %}
+{% extends 'index.html' %} {% block title %}
 <section class="hero">
     <div class="hero-body">
         <div class="container">
@@ -12,9 +11,7 @@
         </div>
     </div>
 </section>
-{% endblock %}
-
-{% block body %}
+{% endblock %} {% block body %}
 <div class="container is-widescreen">
     <div class="columns">
         <div class="column">
@@ -23,19 +20,21 @@
             <table class="table center">
                 <thead>
                     <tr>
+                        <th>Id</th>
                         <th>Nome</th>
                         <th>Telefone</th>
                         <th>E-mail</th>
                     </tr>
                 </thead>
-                {%for value in sellers%}
+                {%for seller in sellers%}
                 <tbody>
                     <tr>
-                        <td>{{value['nome']}}</td>
-                        <td>{{value['telefone']}}</td>
-                        <td>{{value['email']}}</td>
+                        <td>{{seller.id}}</td>
+                        <td>{{seller.name}}</td>
+                        <td>{{seller.phone}}</td>
+                        <td>{{seller.email}}</td>
                     </tr>
-                {%endfor%}
+                    {%endfor%}
                 </tbody>
             </table>
         </div>

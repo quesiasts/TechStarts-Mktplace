@@ -1,5 +1,4 @@
-{% extends 'index.html' %}
-{% block title %}
+{% extends 'index.html' %} {% block title %}
 <section class="hero">
     <div class="hero-body">
         <div class="container">
@@ -12,21 +11,19 @@
         </div>
     </div>
 </section>
-{% endblock %}
-
-{% block body %}
+{% endblock %} {% block body %}
 <div class="container is-widescreen">
     <form action="/adicionar_marketplaces">
         <div class="field">
             <label class="label">Nome do marketplace</label>
             <div class="control">
-                <input class="input" type="text" name="nome" style="width: 30%;" required/>
+                <input class="input" type="text" name="name" style="width: 30%;" required/>
             </div>
         </div>
         <div class="field">
             <label class="label">Descrição do marketplace</label>
             <div class="control">
-                <input class="input" type="text" name="descricao" style="width: 30%;" />
+                <input class="input" type="text" name="description" style="width: 30%;" />
             </div>
         </div>
         <input class="class= button is-link" type='submit' value='Cadastrar' />

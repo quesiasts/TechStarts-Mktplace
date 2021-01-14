@@ -1,5 +1,4 @@
-{% extends 'index.html' %}
-{% block title %}
+{% extends 'index.html' %} {% block title %}
 <section class="hero">
     <div class="hero-body">
         <div class="container">
@@ -12,9 +11,7 @@
         </div>
     </div>
 </section>
-{% endblock %}
-
-{% block body %}
+{% endblock %} {% block body %}
 <div class="container is-widescreen">
     <div class="columns">
         <div class="column">
@@ -23,15 +20,17 @@
             <table class="table center">
                 <thead>
                     <tr>
+                        <th>Id</th>
                         <th>Nome</th>
                         <th>Descrição</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {% for i in lista_marketplaces %}
+                    {% for marketplace in lista_marketplaces %}
                     <tr>
-                        <td>{{i['nome']}}</td>
-                        <td>{{i['descricao']}}</td>
+                        <td>{{marketplace.id}}</td>
+                        <td>{{marketplace.name}}</td>
+                        <td>{{marketplace.description}}</td>
                     </tr>
                     {% endfor %}
                 </tbody>
