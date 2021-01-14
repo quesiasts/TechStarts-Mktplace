@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, redirect
 import sys
 sys.path.append('.')
 
+from backend.controller.base_controller import *
 from backend.controller.produto_controller import *
 from backend.controller.categoria_controller import *
 from backend.controller.marketplace_controller import *
@@ -12,7 +13,7 @@ from backend.models.marketplace import *
 from backend.models.produto import *
 from backend.models.seller import *
 
-
+category_controller = CategoryController()
 
 app = Flask(__name__)
 app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
@@ -30,7 +31,7 @@ def marketplaces():
 
 @app.route('/categorias')
 def categorias():
-    return render_template('categorias.html', categorias=listar_categorias())
+    return render_template('categorias.html', categorias=category_controller.read_all())
 
 
 @app.route('/produtos')
@@ -67,13 +68,13 @@ def add_categorias():
     nome = request.args.get('nome')
     descricao = request.args.get('descricao')
     categoria = Categoria(nome, descricao)
-    criar_categorias(categoria)
+    category_controller.create(categoria)
     return render_template('retorno_categorias.html', mensagem=f'Categoria {categoria.name} cadastrado com sucesso!')
 
 @app.route('/categoria/update')
 def edit_categoria():
     id = request.args.get('id')
-    categoria = edit_category(id) 
+    categoria = category_controller.read_by_id(id) 
     return render_template('categorias.html', categoria = categoria, edit = True)
 
 
@@ -83,13 +84,13 @@ def save_categoria():
     name = request.form.get('name')
     description = request.form.get('description')
     categoria = Categoria(name, description, id)
-    update_categoria(categoria)      
+    category_controller.update(categoria)      
     return redirect('/listagem_categorias')
 
 @app.route('/categoria/delete', methods=['POST'])
 def delete_categoria_web():
     id = request.form.get('id')
-    delete_categoria(id) 
+    category_controller.delete(id) 
     return redirect('/listagem_categorias')
 
   
@@ -120,7 +121,7 @@ def list_marketplace():
 
 @app.route('/listagem_categorias')
 def list_categoria():
-    return render_template('listagem_categorias.html', lista_categorias = listar_categorias())
+    return render_template('listagem_categorias.html', lista_categorias = category_controller.read_all())
 
 
 @app.route('/listagem_logs')

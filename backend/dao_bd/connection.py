@@ -1,5 +1,4 @@
 import psycopg2
-
   
 class Connection:
     def __get_connection_string(self):
