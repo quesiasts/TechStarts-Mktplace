@@ -19,6 +19,6 @@ def listar_log_bd() -> list:
         linhas = cursor.fetchall()        
         for linha in linhas:
             datetime = linha[1].strftime("%d/%m/%Y") + ' - ' + str(linha[2])
-            log = Log(linha[0],  linha[3], datetime)         
+            log = Log(linha[3],  datetime, linha[0])         
             logs.append(log)        
     return logs
