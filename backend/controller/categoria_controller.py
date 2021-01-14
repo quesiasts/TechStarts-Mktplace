@@ -15,18 +15,21 @@ def listar_categorias() -> list:
     categorias = listar_categoria_bd()
     log = Log(None, None, f'Categoria listada!')
     criar_log_bd(log)
-    return categorias
+    return categorias  
 
-    criar_log_bd(f'Categoria listada!')
-    return listar_categoria_bd()
+def edit_category(id:int):
+    return get_category_by_id(id)
 
-def get_by_id(id:int):
-    pass
+def update_categoria(categoria: Categoria) -> None:
+    update_categoria_bd(categoria)
+    log = Log(None, None, f'Categoria atualizada!')
+    criar_log_bd(log)
 
-def update(category):
-    pass
+def delete_categoria(id:int):
+    delete_categoria_bd(id)
 
-def delete(id:int):
-    pass
+
+
+
 
     

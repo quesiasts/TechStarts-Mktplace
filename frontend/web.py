@@ -2,15 +2,16 @@ from flask import Flask, render_template, request, redirect
 import sys
 sys.path.append('.')
 
-from backend.models.categoria import *
-from backend.models.marketplace import *
-from backend.models.produto import *
-from backend.models.seller import *
 from backend.controller.produto_controller import *
 from backend.controller.categoria_controller import *
 from backend.controller.marketplace_controller import *
 from backend.controller.seller_controller import *
 from backend.controller.log_controller import *
+from backend.models.categoria import *
+from backend.models.marketplace import *
+from backend.models.produto import *
+from backend.models.seller import *
+
 
 
 app = Flask(__name__)
@@ -68,6 +69,28 @@ def add_categorias():
     categoria = Categoria(nome, descricao)
     criar_categorias(categoria)
     return render_template('retorno_categorias.html', mensagem=f'Categoria {categoria.name} cadastrado com sucesso!')
+
+@app.route('/categoria/update')
+def edit_categoria():
+    id = request.args.get('id')
+    categoria = edit_category(id) 
+    return render_template('categorias.html', categoria = categoria, edit = True)
+
+
+@app.route('/categoria/update', methods=['POST'])
+def save_categoria():
+    id = request.form.get('id')
+    name = request.form.get('name')
+    description = request.form.get('description')
+    categoria = Categoria(name, description, id)
+    update_categoria(categoria)      
+    return redirect('/listagem_categorias')
+
+@app.route('/categoria/delete', methods=['POST'])
+def delete_categoria_web():
+    id = request.form.get('id')
+    delete_categoria(id) 
+    return redirect('/listagem_categorias')
 
   
 @app.route('/adicionar_sellers')

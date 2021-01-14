@@ -31,6 +31,13 @@
                         <td>{{categoria.id}}</td>
                         <td>{{categoria.name}}</td>
                         <td>{{categoria.description}}</td>
+                        <td> <a href="/categoria/update?id={{categoria.id}}">Editar</a> </td>
+                        <td>
+                            <form action="/categoria/delete" method="post">
+                                <input type="hidden" name="id" value="{{categoria.id}}" />
+                                <button type="submit">Deletar</button>
+                            </form>
+                        </td>
                     </tr>
                     {% endfor %}
                 </tbody>
