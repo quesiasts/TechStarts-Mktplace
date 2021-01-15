@@ -31,6 +31,13 @@
                         <td>{{marketplace.id}}</td>
                         <td>{{marketplace.name}}</td>
                         <td>{{marketplace.description}}</td>
+                        <td> <a href="/marketplace/update?id={{marketplace.id}}">Editar</a> </td>
+                        <td>
+                            <form action="/marketplace/delete" method="post">
+                                <input type="hidden" name="id" value="{{marketplace.id}}" />
+                                <button type="submit">Deletar</button>
+                            </form>
+                        </td>
                     </tr>
                     {% endfor %}
                 </tbody>
@@ -43,7 +50,7 @@
 </div>
 <div class="container is-widescreen">
     <div class="buttons">
-        <a class="button is-link" href="/">Voltar ao início</a>
+        <a class="button is-primary" href="/">Voltar ao início</a>
     </div>
 </div>
 {% endblock %}

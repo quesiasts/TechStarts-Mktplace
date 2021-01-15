@@ -6,7 +6,7 @@
                 Lista
             </h1>
             <h2 class="subtitle">
-                de sellers
+                de seller
             </h2>
         </div>
     </div>
@@ -22,19 +22,26 @@
                     <tr>
                         <th>Id</th>
                         <th>Nome</th>
-                        <th>Telefone</th>
-                        <th>E-mail</th>
+                        <th>email</th>
+                        <th>telefone</th>
                     </tr>
                 </thead>
-                {%for seller in sellers%}
                 <tbody>
+                    {% for seller in sellers %}
                     <tr>
                         <td>{{seller.id}}</td>
                         <td>{{seller.name}}</td>
-                        <td>{{seller.phone}}</td>
                         <td>{{seller.email}}</td>
+                        <td>{{seller.phone}}</td>
+                        <td> <a href="/seller/update?id={{seller.id}}">Editar</a> </td>
+                        <td>
+                            <form action="/seller/delete" method="post">
+                                <input type="hidden" name="id" value="{{seller.id}}" />
+                                <button type="submit">Deletar</button>
+                            </form>
+                        </td>
                     </tr>
-                    {%endfor%}
+                    {% endfor %}
                 </tbody>
             </table>
         </div>
@@ -45,7 +52,7 @@
 </div>
 <div class="container is-widescreen">
     <div class="buttons">
-        <a class="button is-link" href="/">Voltar ao início</a>
+        <a class="button is-primary" href="/">Voltar ao início</a>
     </div>
 </div>
 {% endblock %}

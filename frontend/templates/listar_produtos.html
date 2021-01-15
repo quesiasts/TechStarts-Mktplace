@@ -23,18 +23,25 @@
                         <th>Id</th>
                         <th>Nome</th>
                         <th>Descrição</th>
-                        <th>Preço</th>
+                        <th>preço</th>
                     </tr>
                 </thead>
-                {%for produto in produtos%}
                 <tbody>
+                    {% for product in produtos %}
                     <tr>
-                        <td>{{produto.id}}</td>
-                        <td>{{produto.name}}</td>
-                        <td>{{produto.description}}</td>
-                        <td><b>{{produto.price}}</b></td>
+                        <td>{{product.id}}</td>
+                        <td>{{product.name}}</td>
+                        <td>{{product.description}}</td>
+                        <td>{{product.price}}</td>
+                        <td> <a href="/produto/update?id={{product.id}}">Editar</a> </td>
+                        <td>
+                            <form action="/produto/delete" method="post">
+                                <input type="hidden" name="id" value="{{product.id}}" />
+                                <button type="submit">Deletar</button>
+                            </form>
+                        </td>
                     </tr>
-                    {%endfor%}
+                    {% endfor %}
                 </tbody>
             </table>
         </div>
@@ -45,7 +52,7 @@
 </div>
 <div class="container is-widescreen">
     <div class="buttons">
-        <a class="button is-link" href="/">Voltar ao início</a>
+        <a class="button is-primary" href="/">Voltar ao início</a>
     </div>
 </div>
 {% endblock %}

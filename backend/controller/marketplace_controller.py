@@ -1,22 +1,12 @@
 import sys
 sys.path.append('.')
 
-from backend.dao_txt.marketplace_dao_txt import criar_marketplace, listar_marketplace
-from backend.dao_bd.log_dao import *
-from backend.dao_bd.marketplace_dao import *
-from backend.models.marketplace import Marketplace
+from .base_controller import BaseController
+from backend.dao_bd.marketplace_dao import MarketplaceDao
 
-
-
-def criar_marketplaces(marketplace: Marketplace) -> None:
-    criar_marketplace_bd(marketplace)
-    log = Log(f'Marketplace {marketplace.name} criado!' )
-    criar_log_bd(log)
-
-def listar_marketplaces() -> list:
-    marketplaces = listar_marketplace_bd()
-    log = Log(f'Marketplace listado!')
-    criar_log_bd(log)
-    return marketplaces
+class MarketplaceController(BaseController):
+    def __init__(self):
+        self.__dao = MarketplaceDao()
+        super().__init__(self.__dao)
 
 
