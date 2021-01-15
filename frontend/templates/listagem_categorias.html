@@ -23,6 +23,8 @@
                         <th>Id</th>
                         <th>Nome</th>
                         <th>Descrição</th>
+                        <th>Editar</th>
+                        <th>Excluir</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -35,7 +37,7 @@
                         <td>
                             <form action="/categoria/delete" method="post">
                                 <input type="hidden" name="id" value="{{category.id}}" />
-                                <button type="submit">Deletar</button>
+                                <button type="submit" style="background: purple">Deletar</button>
                             </form>
                         </td>
                     </tr>

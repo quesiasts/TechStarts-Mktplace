@@ -23,6 +23,8 @@
                         <th>Id</th>
                         <th>Nome</th>
                         <th>Descrição</th>
+                        <th>Editar</th>
+                        <th>Excluir</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -35,7 +37,7 @@
                         <td>
                             <form action="/marketplace/delete" method="post">
                                 <input type="hidden" name="id" value="{{marketplace.id}}" />
-                                <button type="submit">Deletar</button>
+                                <button type="submit" style="background: purple">Deletar</button>
                             </form>
                         </td>
                     </tr>
@@ -43,14 +45,14 @@
                 </tbody>
             </table>
         </div>
-        <div class="column">
+        <div class=" column ">
         </div>
     </div>
     <hr>
 </div>
-<div class="container is-widescreen">
-    <div class="buttons">
-        <a class="button is-primary" href="/">Voltar ao início</a>
+<div class="container is-widescreen ">
+    <div class="buttons ">
+        <a class="button is-primary " href="/ ">Voltar ao início</a>
     </div>
 </div>
 {% endblock %}

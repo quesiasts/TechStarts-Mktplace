@@ -24,6 +24,8 @@
                         <th>Nome</th>
                         <th>Descrição</th>
                         <th>preço</th>
+                        <th>Editar</th>
+                        <th>Excluir</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -37,7 +39,7 @@
                         <td>
                             <form action="/produto/delete" method="post">
                                 <input type="hidden" name="id" value="{{product.id}}" />
-                                <button type="submit">Deletar</button>
+                                <button type="submit" style="background: purple">Deletar</button>
                             </form>
                         </td>
                     </tr>

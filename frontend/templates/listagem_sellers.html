@@ -24,6 +24,8 @@
                         <th>Nome</th>
                         <th>email</th>
                         <th>telefone</th>
+                        <th>Editar</th>
+                        <th>Excluir</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -37,7 +39,7 @@
                         <td>
                             <form action="/seller/delete" method="post">
                                 <input type="hidden" name="id" value="{{seller.id}}" />
-                                <button type="submit">Deletar</button>
+                                <button type="submit" style="background: purple">Deletar</button>
                             </form>
                         </td>
                     </tr>
