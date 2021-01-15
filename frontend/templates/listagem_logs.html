@@ -26,43 +26,15 @@
                     </tr>
                 </thead>
                 <tbody>
-                    {% for linha in lista_logs %} {% if 'listado' in linha.description or 'listada' in linha.description %}
-                    <tr style="background: rgb(211, 195, 103)">
+                    {% set cores = { "cadastrando": 'green', "listando": 'gray', "lendo": 'blue', "atualizando": 'purple', "deletando": 'red'} %}
+                    <!---->
+                    {% for linha in lista_logs %}
+                    <tr style="background: {{ cores[linha.action] }}">
                         <td>{{linha.date}}</td>
                         <td>{{linha.hour}}</td>
                         <td>{{linha.description}}</td>
                     </tr>
-
-                    {% elif 'criado' in linha.description or 'criada' in linha.description %}
-                    <tr style="background: rgb(86, 174, 196)">
-                        <td>{{linha.date}}</td>
-                        <td>{{linha.hour}}</td>
-                        <td>{{linha.description}}</td>
-                    </tr>
-
-                    {% elif 'atualizado' in linha.description or 'atualizada' in linha.description %}
-                    <tr style="background: rgb(146, 212, 151)">
-                        <td>{{linha.date}}</td>
-                        <td>{{linha.hour}}</td>
-                        <td>{{linha.description}}</td>
-                    </tr>
-
-                    {% elif 'deletado' in linha.description %}
-                    <tr style="background: rgb(201, 44, 44)">
-                        <td>{{linha.date}}</td>
-                        <td>{{linha.hour}}</td>
-                        <td>{{linha.description}}</td>
-                    </tr>
-
-
-
-                    {% else %}
-                    <tr style="background: purple">
-                        <td>{{linha.date}}</td>
-                        <td>{{linha.hour}}</td>
-                        <td>{{linha.description}}</td>
-                    </tr>
-                    {% endif %} {% endfor %}
+                    {% endfor %}
                 </tbody>
             </table>
         </div>
