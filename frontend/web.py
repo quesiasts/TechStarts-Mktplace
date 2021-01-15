@@ -17,6 +17,7 @@ category_controller = CategoryController()
 marketplace_controller = MarketplaceController()
 product_controller = ProductController()
 seller_controller = SellerController()
+log_controller = LogController()
 
 app = Flask(__name__)
 app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
@@ -133,7 +134,7 @@ def add_categorias():
 def edit_categoria():
     id = request.args.get('id')
     category = category_controller.read_by_id(id) 
-    return render_template('categorias.html', categoria = category, edit = True)
+    return render_template('categorias.html', category = category, edit = True)
 
 
 @app.route('/categoria/update', methods=['POST'])
@@ -216,7 +217,7 @@ def list_categoria():
 
 @app.route('/listagem_logs')
 def list_log():
-    return render_template('listagem_logs.html', lista_logs = listar_logs())
+    return render_template('listagem_logs.html', lista_logs = log_controller.read_all())
 
 
 app.run(debug=True)

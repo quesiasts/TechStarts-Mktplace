@@ -2,7 +2,7 @@ class BaseController:
   def __init__(self, dao):
     self.__dao = dao
 
-  def create(self, model: object ) -> None:
+  def create(self, model: object) -> None:
     return self.__dao.create(model)
       
 
