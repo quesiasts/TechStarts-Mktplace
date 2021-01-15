@@ -13,10 +13,10 @@ from backend.models.marketplace import *
 from backend.models.produto import *
 from backend.models.seller import *
 
-category_controller = CategoryController()
-marketplace_controller = MarketplaceController()
-product_controller = ProductController()
-seller_controller = SellerController()
+category_controller = CategoryController('Categoria')
+marketplace_controller = MarketplaceController('Marketplace')
+product_controller = ProductController('Produto')
+seller_controller = SellerController('Seller')
 log_controller = LogController()
 
 app = Flask(__name__)
@@ -30,12 +30,12 @@ def index():
 
 @app.route('/marketplaces')
 def marketplaces():
-    return render_template('marketplaces.html', marketplaces=marketplace_controller.read_all())
+    return render_template('marketplaces.html')
 
 
 @app.route('/categorias')
 def categorias():
-    return render_template('categorias.html', categorias=category_controller.read_all())
+    return render_template('categorias.html')
 
 
 @app.route('/produtos')
@@ -82,8 +82,8 @@ def delete_produto_web():
     product_controller.delete(id) 
     return redirect('/listar_produtos')
 
-#MARKETPLACES
 
+#MARKETPLACES
 @app.route('/adicionar_marketplaces')
 def add_marketplaces():
     name = request.args.get('name')
@@ -117,10 +117,6 @@ def delete_marketplace_web():
 
 
 
-
-
-
-
 #CATEGORIA
 @app.route('/adicionar_categorias')
 def add_categorias():
@@ -151,10 +147,6 @@ def delete_categoria_web():
     id = request.form.get('id')
     category_controller.delete(id) 
     return redirect('/listagem_categorias')
-
-  
-
-
 
 
 #SELLERS
@@ -191,8 +183,6 @@ def delete_seller_web():
     return redirect('/listar_sellers')
 
 
-
-
 @app.route('/listar_sellers')
 def listar_seller():
     listaSeller = seller_controller.read_all()
@@ -204,7 +194,7 @@ def listar_seller():
 def listar_produto():
     return render_template('listar_produtos.html', produtos=product_controller.read_all())
 
-# substituir por /marketplaces 
+
 @app.route('/listagem_marketplaces')
 def list_marketplace():
     return render_template('listagem_marketplaces.html', lista_marketplaces = marketplace_controller.read_all())

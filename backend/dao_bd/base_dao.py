@@ -2,18 +2,23 @@ from .connection import Connection
 
 class BaseDao:
     def execute(self, query:str) -> None:
-        with Connection() as connection:
-            cursor = connection.cursor()
-            cursor.execute(query)
-            connection.commit()   
-            
-        
+        try:
+            with Connection() as connection:
+                cursor = connection.cursor()
+                cursor.execute(query)
+                connection.commit()
+        except Exception as error:
+            print(error)
+
     def read(self, query:str) -> tuple:
-        with Connection() as connection:
-            cursor = connection.cursor()
-            cursor.execute(query)
-            result = cursor.fetchall()
-        return result
+        try:
+            with Connection() as connection:
+                cursor = connection.cursor()
+                cursor.execute(query)
+                result = cursor.fetchall()
+            return result
+        except Exception as error:
+            print(error)
         
 
 
