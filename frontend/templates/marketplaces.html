@@ -6,7 +6,7 @@
                 Atualizar
             </h1>
             <h2 class="subtitle">
-                atualizar seller
+                atualize marketplace
             </h2>
         </div>
     </div>
@@ -21,7 +21,7 @@
                 Cadastrar
             </h1>
             <h2 class="subtitle">
-                cadastre seu seller
+                cadastre marketplace
             </h2>
         </div>
     </div>
@@ -29,25 +29,18 @@
 {% endif %} {% endblock %} {% block body %} {% if edit %}
 
 <div class="container is-widescreen">
-    <form action="/seller/update" method="post">
-        <input type="hidden" name="id" value="{{seller.id}}" />
+    <form action="/marketplace/update" method="post">
+        <input type="hidden" name="id" value="{{marketplace.id}}" />
         <div class="field">
-            <label class="label">Nome do seller</label>
+            <label class="label">Nome do marketplace</label>
             <div class="control">
-                <input class="input" type="text" name="name" value="{{seller.name}}" style="width: 30%;" />
+                <input class="input" type="text" name="name" value="{{marketplace.name}}" style="width: 30%;" />
             </div>
         </div>
         <div class="field">
-            <label class="label">Email do seller</label>
+            <label class="label">Descrição do marketplace</label>
             <div class="control">
-                <input class="input" type="text" name="email" value="{{seller.email}}" style="width: 30%;" />
-            </div>
-        </div>
-
-        <div class="field">
-            <label class="label">Telefone do seller</label>
-            <div class="control">
-                <input class="input" type="number" name="phone" value="{{seller.phone}}" style="width: 30%;" />
+                <input class="input" type="text" name="description" value="{{marketplace.description}}" style="width: 30%;" />
             </div>
         </div>
         <input class="class= button is-link" type='submit' value='Salvar' />
@@ -57,28 +50,19 @@
 {% else %}
 
 <div class="container is-widescreen">
-    <form action="/adicionar_sellers">
+    <form action="/adicionar_marketplaces">
         <div class="field">
-            <label class="label">Nome do seller</label>
+            <label class="label">Nome do marketplace</label>
             <div class="control">
                 <input class="input" type="text" name="name" style="width: 30%;" required />
             </div>
         </div>
         <div class="field">
-            <label class="label">Email do seller</label>
+            <label class="label">Descrição do marketplace</label>
             <div class="control">
-                <input class="input" type="text" name="email" style="width: 30%;" />
+                <input class="input" type="text" name="description" style="width: 30%;" />
             </div>
         </div>
-
-        <div class="field">
-            <label class="label">Telefone do seller</label>
-            <div class="control">
-                <input class="input" type="text" name="phone" style="width: 30%;" />
-            </div>
-        </div>
-
-
         <input class="class= button is-link" type='submit' value='Cadastrar' />
         <a class="button is-link is-light" href="/">Cancelar</a>
     </form>

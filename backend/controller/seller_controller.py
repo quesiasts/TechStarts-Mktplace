@@ -1,19 +1,11 @@
 import sys
 sys.path.append('.')
 
-from backend.dao_bd.seller_dao import *
-from backend.dao_bd.log_dao import *
-from backend.models.seller import Seller
+from .base_controller import BaseController
+from backend.dao_bd.seller_dao import SellerDao
 
-
-def criar_sellers(seller: Seller) -> None:
-    criar_seller_bd(seller)
-    log = Log(f'Seller {seller.name} cadastrado!' )
-    criar_log_bd(log)
-
-
-def listar_sellers() -> list:
-    sellers = listar_seller_bd()
-    log = Log(f'Seller listado!')
-    criar_log_bd(log)
-    return sellers
+class SellerController(BaseController):
+    def __init__(self, type_entity):
+        self.__dao = SellerDao()
+        self.type_entity = type_entity
+        super().__init__(self.__dao, self.type_entity)

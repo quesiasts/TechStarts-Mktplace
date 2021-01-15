@@ -1,25 +1,46 @@
-from .conexao import *
-from backend.models.produto import Produto
+from .connection import Connection
+
+from .base_dao import BaseDao
+from backend.models.produto import Product
+
+class ProductDao(BaseDao):
+    def create(self, product: Product)-> list:
+        query = f""" INSERT INTO product
+                            (NAME, DESCRIPTION, PRICE)
+                            VALUES
+                            ('{product.name}',
+                            '{product.description}',
+                            '{product.price}'); """
+        super().execute(query)
+            
+
+    def read_by_id(self, id: int) -> Product:        
+        query = f"SELECT name, description, price, id FROM product WHERE ID={id}"
+        result = super().read(query) [0]
+        products = Product(result[0], result[1], result[2], result[3])
+        return products
 
 
-def criar_produto_bd(produto: Produto) -> None:
-    conn = psycopg2.connect(dados_conexao())
-    cursor = conn.cursor()    
-    cursor.execute(f"INSERT INTO product (name, description, price) VALUES ('{produto.name}', '{produto.description}', {produto.price});")
-    conn.commit()
-    cursor.close()
-    conn.close()
-    
-    
-def listar_produto_bd() -> list:
-    conn = psycopg2.connect(dados_conexao())
-    cursor = conn.cursor()
-    cursor.execute("SELECT * FROM product")
-    linhas = cursor.fetchall()
-    products = []
-    for linha in linhas:
-        product = Produto(linha[0], linha[1], linha[2], linha[3])        
-        products.append(product)
-    cursor.close()
-    conn.close()
-    return products
+    def read_all(self) -> list:
+        query = f"SELECT name, description, price, id FROM product"
+        result_list = super().read(query)
+        products = []              
+        for result in result_list:
+            product = Product(result[0], result[1], result[2], result[3])        
+            products.append(product)        
+        return products
+
+
+    def update(self, product: Product) -> None:        
+        query = f"""UPDATE product
+                                SET 
+                                name = '{product.name}',
+                                description = '{product.description}',
+                                price = '{product.price}'
+                                WHERE id = '{product.id}'"""
+        super().execute(query)
+        
+
+    def delete(self, id: int) -> None:        
+        query = f"DELETE FROM product WHERE id = '{id}'"
+        super().execute(query)

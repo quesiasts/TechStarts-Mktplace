@@ -1,5 +1,7 @@
 class Log:
-  def __init__(self, description: str, datetime: str = None, id: int = None) -> None:
+  def __init__(self, description: str, date: str, hour: str, action: str, id: str = None) -> None:
     self.id = id
-    self.datetime = datetime    
+    self.date = date
+    self.hour = hour    
     self.description = description
+    self.action = action

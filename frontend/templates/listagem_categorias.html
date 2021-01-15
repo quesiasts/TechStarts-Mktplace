@@ -23,14 +23,23 @@
                         <th>Id</th>
                         <th>Nome</th>
                         <th>Descrição</th>
+                        <th>Editar</th>
+                        <th>Excluir</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {% for categoria in lista_categorias %}
+                    {% for category in lista_categorias %}
                     <tr>
-                        <td>{{categoria.id}}</td>
-                        <td>{{categoria.name}}</td>
-                        <td>{{categoria.description}}</td>
+                        <td>{{category.id}}</td>
+                        <td>{{category.name}}</td>
+                        <td>{{category.description}}</td>
+                        <td> <a href="/categoria/update?id={{category.id}}">Editar</a> </td>
+                        <td>
+                            <form action="/categoria/delete" method="post">
+                                <input type="hidden" name="id" value="{{category.id}}" />
+                                <button type="submit" style="background: purple">Deletar</button>
+                            </form>
+                        </td>
                     </tr>
                     {% endfor %}
                 </tbody>

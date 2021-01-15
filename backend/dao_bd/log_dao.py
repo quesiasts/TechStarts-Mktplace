@@ -1,27 +1,24 @@
-
-#from backend.conexao_bd.conexao import *
 from backend.models.log import Log
-from .conexao import *
+from .base_dao import BaseDao
 
 
-def criar_log_bd(log: Log) -> None:
-    conn = psycopg2.connect(dados_conexao())
-    cursor = conn.cursor()
-    cursor.execute(f"INSERT INTO log (description) VALUES ('{log.description}');")
-    conn.commit()
-    cursor.close()
-    conn.close()
-    
-def listar_log_bd() -> list:    
-    conn = psycopg2.connect(dados_conexao())
-    cursor = conn.cursor()
-    cursor.execute("SELECT id, date, hour, description FROM log")
-    linhas = cursor.fetchall()   
-    logs = []
-    for linha in linhas:
-        datetime = linha[1].strftime("%d/%m/%Y") + ' - ' + str(linha[2])
-        log = Log(linha[3], datetime, linha[0])
-        logs.append(log)
-    cursor.close()
-    conn.close()
-    return logs
+class LogDao(BaseDao):
+    def create(self, log: Log)-> list:
+        query = f""" INSERT INTO log
+                            (description, date, hour, action)
+                            VALUES
+                            ('{log.description}',
+                            '{log.date}',
+                            '{log.hour}',
+                            '{log.action}'); """
+        super().execute(query)
+            
+
+    def read_log(self) -> list:
+        query = f"SELECT description, date, hour, action FROM log;"
+        result_list = super().read(query)
+        logs = []
+        for log in result_list:
+            log = Log(log[0], log[1],log[2], log[3])
+            logs.append(log)
+        return logs

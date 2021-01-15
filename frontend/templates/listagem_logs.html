@@ -20,22 +20,21 @@
             <table class="table center">
                 <thead>
                     <tr>
-                        <th>Data/Hora</th>
+                        <th>Data</th>
+                        <th>Hora</th>
                         <th>Ação</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {% for linha in lista_logs %} {% if 'listado' in linha['operacao'] or 'listada' in linha['operacao'] %}
-                    <tr bgcolor="#708090">
-                        <td>{{linha.datetime}}</td>
+                    {% set cores = { "cadastrando": 'green', "listando": 'gray', "lendo": 'blue', "atualizando": 'purple', "deletando": 'red'} %}
+                    <!---->
+                    {% for linha in lista_logs %}
+                    <tr style="background: {{ cores[linha.action] }}">
+                        <td>{{linha.date}}</td>
+                        <td>{{linha.hour}}</td>
                         <td>{{linha.description}}</td>
                     </tr>
-                    {% else %}
-                    <tr bgcolor="#B0C4DE">
-                        <td>{{linha.datetime}}</td>
-                        <td>{{linha.description}}</td>
-                    </tr>
-                    {% endif %} {% endfor %}
+                    {% endfor %}
                 </tbody>
             </table>
         </div>
