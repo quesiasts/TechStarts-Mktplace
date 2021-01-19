@@ -147,4 +147,5 @@ dados/log.txt
 dados/marketplaces.txt
 dados/produtos.txt
 dados/sellers.txt
-*.txt
+
+.vscode/
