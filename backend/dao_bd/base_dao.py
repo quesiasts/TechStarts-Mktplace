@@ -1,11 +1,11 @@
-from typing import ClassVar
+from typing import Type
 
 from backend.dao_bd.session import Session
 from backend.models.base_model import BaseModel
 
 
 class BaseDao:
-    def __init__(self, model_type: ClassVar) -> None:
+    def __init__(self, model_type: Type) -> None:
         self.__model_type = model_type
 
     def save(self, model: BaseModel) -> None:
