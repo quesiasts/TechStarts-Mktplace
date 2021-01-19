@@ -1,24 +1,21 @@
+from sqlalchemy.orm.exc import NoResultFound
+
+from backend.dao_bd.base_dao import BaseDao
+from backend.dao_bd.session import Session
+from backend.models.base_model import BaseModel
 from backend.models.log import Log
-from .base_dao import BaseDao
 
 
 class LogDao(BaseDao):
-    def create(self, log: Log)-> list:
-        query = f""" INSERT INTO log
-                            (description, date, hour, action)
-                            VALUES
-                            ('{log.description}',
-                            '{log.date}',
-                            '{log.hour}',
-                            '{log.action}'); """
-        super().execute(query)
-            
+    def __init__(self):
+        super().__init__(Log)
 
-    def read_log(self) -> list:
-        query = f"SELECT description, date, hour, action FROM log;"
-        result_list = super().read(query)
-        logs = []
-        for log in result_list:
-            log = Log(log[0], log[1],log[2], log[3])
-            logs.append(log)
-        return logs
+    def save(self, model: BaseModel) -> None:
+        try:
+            self.read_by_id(model.id)
+        except NoResultFound:
+            raise Exception('You cannot modify a log!')
+
+        with Session() as session:
+            session.add(model)
+            session.commit()
