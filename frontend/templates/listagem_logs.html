@@ -28,11 +28,11 @@
                 <tbody>
                     {% set cores = { "cadastrando": 'green', "listando": 'gray', "lendo": 'blue', "atualizando": 'purple', "deletando": 'red'} %}
                     <!---->
-                    {% for linha in lista_logs %}
-                    <tr style="background: {{ cores[linha.action] }}">
-                        <td>{{linha.date}}</td>
-                        <td>{{linha.hour}}</td>
-                        <td>{{linha.description}}</td>
+                    {% for log in lista_logs %}
+                    <tr style="background: {{ cores[log.action] }}">
+                        <td>{{log.date.day}}/{{log.date.month}}/{{log.date.year}}</td>
+                        <td>{{log.time.hour}}:{{log.time.minute}}:{{log.time.second}}</td>
+                        <td>{{log.description}}</td>
                     </tr>
                     {% endfor %}
                 </tbody>
