@@ -1,5 +1,4 @@
-from .session import Session
-
+from backend.dao_bd.session import Session
 from .base_dao import BaseDao
 from backend.models.seller import Seller
 
