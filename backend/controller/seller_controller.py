@@ -3,7 +3,7 @@ from backend.dao_bd.seller_dao import SellerDao
 
 
 class SellerController(BaseController):
-    def __init__(self):
+    def __init__(self) -> None:
         self.__dao = SellerDao()
         self.domain_name = "Seller"
         super().__init__(self.__dao, self.domain_name)
