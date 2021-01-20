@@ -14,7 +14,6 @@ class Product(BaseModel):
         self.description = description
         self.price = price
 
-    def __str__(self):
+    def __str__(self) -> str:
         return f"Name: {self.name}, Description: {self.description}, Price: {self.price}"
   
-    

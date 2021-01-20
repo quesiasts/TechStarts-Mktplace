@@ -3,5 +3,5 @@ from backend.models.produto import Product
 
 
 class ProductDao(BaseDao):
-    def __init__(self):
+    def __init__(self) -> None:
         super().__init__(Product)
