@@ -1,7 +1,9 @@
-from .connection import Connection
+from .session import Session
 
 from .base_dao import BaseDao
 from backend.models.seller import Seller
 
 class SellerDao(BaseDao):
-    super().__init__(Seller)
+    def __init__(self):
+        super().__init__(Seller)
+
