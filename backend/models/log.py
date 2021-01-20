@@ -10,9 +10,9 @@ class Log(BaseModel):
     date = Column(Date, server_default=func.current_date(), nullable=False)
     time = Column(Time, server_default=func.current_time(), nullable=False)
 
-    def __init__(self, description: str, action: str, date: str = None, hour: str = None, id: int = None) -> None:
+    def __init__(self, description: str, action: str, date: str = None, time: str = None, id: int = None) -> None:
         self.id = id
         self.date = date
-        self.hour = hour
+        self.time = time
         self.description = description
         self.action = action
