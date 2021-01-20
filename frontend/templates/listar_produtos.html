@@ -34,7 +34,7 @@
                         <td>{{product.id}}</td>
                         <td>{{product.name}}</td>
                         <td>{{product.description}}</td>
-                        <td>{{product.price}}</td>
+                        <td>R${{ "%.2f"|format(product.price) }}</td>
                         <td> <a href="/produto/update?id={{product.id}}">Editar</a> </td>
                         <td>
                             <form action="/produto/delete" method="post">
