@@ -3,6 +3,6 @@ from backend.dao_bd.marketplace_dao import MarketplaceDao
 
 
 class MarketplaceController(BaseController):
-    def __init__(self):
+    def __init__(self) -> None:
         self.__dao = MarketplaceDao()
         super().__init__(self.__dao, 'Marketplace')

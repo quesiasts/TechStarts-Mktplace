@@ -8,6 +8,6 @@ class Marketplace(BaseModel):
     name = sql.Column( sql.String(length=200), nullable=False )
     description = sql.Column( sql.String(length=200), nullable=True )
 
-    def __init__(self, name:str, description:str):
+    def __init__(self, name:str, description:str) -> None:
         self.name = name
         self.description = description
