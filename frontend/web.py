@@ -1,6 +1,4 @@
 from flask import Flask, render_template, request, redirect
-import sys
-sys.path.append('.')
 
 from backend.controller.base_controller import *
 from backend.controller.produto_controller import *

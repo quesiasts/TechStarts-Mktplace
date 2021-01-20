@@ -12,9 +12,8 @@ class LogDao(BaseDao):
     def save(self, model: Log) -> None:
         try:
             self.read_by_id(model.id)
-        except NoResultFound:
             raise Exception('You cannot modify a log!')
-
-        with Session() as session:
-            session.add(model)
-            session.commit()
+        except NoResultFound:
+            with Session() as session:
+                session.add(model)
+                session.commit()

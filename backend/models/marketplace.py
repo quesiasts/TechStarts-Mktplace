@@ -1,29 +1,13 @@
-class Marketplace:
-    def __init__(self, name: str, description: str, id: int = None) -> None:
-        self.__id = id
-        self.__name = name
-        self.__description = description
+from sqlalchemy import String, Column
+from backend.models.base_model import BaseModel
 
-    @property
-    def id(self):
-        return self.__id
 
-    @property
-    def name(self):
-        return self.__name
+class Marketplace(BaseModel): 
+    __tablename__ = 'marketplace'
 
-    @property
-    def description(self):
-        return self.__description
+    name = Column( String(length=200), nullable=False )
+    description = Column( String(length=200), nullable=True )
 
-    @id.setter
-    def id(self, id):
-        self.__id = id
-
-    @name.setter
-    def name(self, name):
-        self.__name = name
-
-    @description.setter
-    def description(self, description):
-        self.__description = description
+    def __init__(self, name:str, description:str) -> None:
+        self.name = name
+        self.description = description
