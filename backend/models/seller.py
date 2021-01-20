@@ -1,10 +1,13 @@
-class Seller:
+import sqlalchemy
+from backend.models.base_model import BaseModel
+
+class Seller(BaseModel):
     def _init_(self, name:str, phone:str, email:str, id:int=None):
-        self.__id = id
-        self.__name = name
-        self.__phone = phone
-        self.__email = email
+        self.name = sqlalchemy.Column(sqlalchemy.String(length=200))
+        self.phone = sqlalchemy.Column(sqlalchemy.String(length=200))
+        self.email = sqlalchemy.Column(sqlalchemy.String(length=200))
         
+
     @property
     def id(self):
         return self.__id
