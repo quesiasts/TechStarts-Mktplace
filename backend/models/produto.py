@@ -5,9 +5,9 @@ from backend.models.base_model import BaseModel
 class Product(BaseModel):
     __tablename__ = 'product'
 
-    name = Column(String(length=200))
-    description = Column(String(length=200))
-    price = Column(Numeric)
+    name = Column(String(length=200), nullable=False)
+    description = Column(String(length=200), nullable=False)
+    price = Column(Numeric, nullable=False)
 
     def __init__(self, name: str, description: str, price: float) -> None:
         self.name = name
